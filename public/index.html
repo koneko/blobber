@@ -1,6 +1,12 @@
 <link rel="shortcut icon" href="https://hub.koneko.link/cdn/icons/black.png" type="image/x-icon">
 <script src="https://pixijs.download/v6.3.2/pixi.js"></script>
-<script src="script.js" defer></script>
+<script>
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+</script>
+<script type="module" src="camera.js"></script>
+<script type="module" src="script.js"></script>
 <body>
     <style>
         * {
@@ -10,6 +16,5 @@
     </style>
     <main>
         <div class="canvas"></div>
-        <div class="controls"></div>
     </main>
 </body>
