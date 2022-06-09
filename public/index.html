@@ -1,20 +1,30 @@
-<link rel="shortcut icon" href="https://hub.koneko.link/cdn/icons/black.png" type="image/x-icon">
-<script src="https://pixijs.download/v6.3.2/pixi.js"></script>
-<script>
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-</script>
-<script type="module" src="camera.js"></script>
-<script type="module" src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="https://hub.koneko.link/cdn/icons/black.png" type="image/x-icon">
+    <script src="https://pixijs.download/v6.3.2/pixi.js"></script>
+</head>
+
 <body>
     <style>
-        * {
+        html,
+        body {
             margin: 0;
             padding: 0;
+            height: 100vh;
+            width: 100vw;
         }
     </style>
-    <main>
-        <div class="canvas"></div>
-    </main>
+    <div class="canvas"></div>
+    <script src="Game.js"></script>
+    <script src="World.js"></script>
+    <script src="Player.js"></script>
+    <script src="script.js"></script>
 </body>
+
+</html>
