@@ -1,6 +1,6 @@
 
 class World {
-    constructor(game) {
+    constructor (game) {
         //set width and height to browser window size
         this.game = game;
         this.width = 11000;
@@ -8,6 +8,17 @@ class World {
         this.worldContainer = new PIXI.Container();
         this.worldContainer.zIndex = 1000;
         app.stage.addChild(this.worldContainer);
+
+        this.items = [];
+
+        for (let i = 0; i < 50; i += 1) {
+            let item = new PIXI.Graphics();
+            item.color = Math.random() * 0xffffff;
+            item.x = Math.floor(Math.random() * app.renderer.width);
+            item.y = Math.floor(Math.random() * app.renderer.height);
+            this.worldContainer.addChild(item);
+            this.items.push(item);
+        }
 
         //load background image and infinitely tile it
         //background url /assets/background.jpg
@@ -25,26 +36,22 @@ class World {
         app.ticker.add((delta) => this.onTick(delta));
     }
 
-    onTick(delta) {
+    onTick (delta) {
         this.totalDeltaTime += 1
         //if ((this.totalDeltaTime % 10) != 0) return;
         if (this.game.state.name !== "game") return;
 
-        var xOffset = 0;
-        var yOffset = 0
-
-        if (this.game.player.x > this.game.mousePositionX) xOffset = -1
-        else if (this.game.player.x < this.game.mousePositionX) xOffset = 1
-
-        if (this.game.player.y > this.game.mousePositionY) yOffset = -1
-        else if (this.game.player.y < this.game.mousePositionY) yOffset = 1
-
-        //console.log(`Moving player towards ${this.game.mousePositionX} / ${this.game.mousePositionY}`);
-        this.game.player.moveBy(xOffset, yOffset)
+        this.game.player.moveTo(this.game.mousePositionX, this.game.mousePositionY)
+        this.items.forEach(item => {
+            item.clear()
+            item.beginFill(item.color);
+            item.drawCircle(item.x, item.y, 10);
+            item.endFill();
+        });
     }
 
-    pan(x, y) {
-        console.log(`Panning camera to X: ${x} Y: ${y}`);
+    pan (x, y) {
+        //console.log(`Panning camera to X: ${x} Y: ${y}`);
         this.worldContainer.x = x;
         this.worldContainer.y = y;
     }
